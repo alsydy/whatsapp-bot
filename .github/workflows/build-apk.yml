@@ -25,6 +25,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '24'
+        cache: 'npm'
     
     - name: Install dependencies
       run: npm install --legacy-peer-deps
@@ -34,26 +35,29 @@ jobs:
     
     - name: Setup Capacitor
       run: npx cap sync android
-      continue-on-error: false
     
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
     
     - name: Accept Android Licenses
-      run: yes | sdkmanager --licenses || true
+      run: |
+        yes | sdkmanager --licenses || true
+        export ANDROID_HOME=$ANDROID_SDK_ROOT
     
-    - name: Create Gradle Wrapper if needed
+    - name: Create Gradle Wrapper
       working-directory: android
       run: |
         if [ ! -f "./gradlew" ]; then
           gradle wrapper --gradle-version 8.0 --distribution-type all
         fi
-        chmod +x gradlew || true
+        chmod +x gradlew
     
     - name: Build APK
       working-directory: android
+      env:
+        ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
       run: |
-        ./gradlew assembleDebug --stacktrace --info || ./gradlew assembleDebug --stacktrace
+        ./gradlew assembleDebug --stacktrace --no-daemon
     
     - name: Upload APK artifact
       uses: actions/upload-artifact@v3
@@ -61,6 +65,7 @@ jobs:
         name: whatsapp-bot-apk
         path: android/app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
+        if-no-files-found: error
     
     - name: Create Release
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
