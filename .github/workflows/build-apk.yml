@@ -27,28 +27,33 @@ jobs:
         node-version: '24'
     
     - name: Install dependencies
-      run: npm install
+      run: npm install --legacy-peer-deps
     
     - name: Build frontend
       run: npm run build
     
     - name: Setup Capacitor
       run: npx cap sync android
+      continue-on-error: false
     
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
+    
+    - name: Accept Android Licenses
+      run: yes | sdkmanager --licenses || true
     
     - name: Create Gradle Wrapper if needed
       working-directory: android
       run: |
         if [ ! -f "./gradlew" ]; then
-          gradle wrapper --gradle-version 8.0
+          gradle wrapper --gradle-version 8.0 --distribution-type all
         fi
         chmod +x gradlew || true
     
     - name: Build APK
       working-directory: android
-      run: ./gradlew assembleDebug
+      run: |
+        ./gradlew assembleDebug --stacktrace --info || ./gradlew assembleDebug --stacktrace
     
     - name: Upload APK artifact
       uses: actions/upload-artifact@v3
