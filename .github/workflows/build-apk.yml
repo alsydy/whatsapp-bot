@@ -47,10 +47,23 @@ jobs:
     - name: Create Gradle Wrapper
       working-directory: android
       run: |
-        if [ ! -f "./gradlew" ]; then
-          gradle wrapper --gradle-version 8.0 --distribution-type all
+        # Download gradle-wrapper.jar if not exists
+        if [ ! -f "./gradle/wrapper/gradle-wrapper.jar" ]; then
+          curl -L -o ./gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.0.0/gradle/wrapper/gradle-wrapper.jar
         fi
-        chmod +x gradlew
+        # Create gradlew script if not exists
+        if [ ! -f "./gradlew" ]; then
+          cat > ./gradlew << 'EOF'
+#!/bin/sh
+APP_BASE_NAME=`basename "$0"`
+APP_HOME=`dirname "$0"`
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+exec java -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+EOF
+          chmod +x ./gradlew
+        else
+          chmod +x ./gradlew
+        fi
     
     - name: Build APK
       working-directory: android
