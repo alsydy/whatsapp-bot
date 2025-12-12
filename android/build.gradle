@@ -9,8 +9,6 @@ buildscript {
     }
 }
 
-apply plugin: 'com.android.application'
-
 ext {
     minSdkVersion = 21
     compileSdkVersion = 33
@@ -23,9 +21,5 @@ allprojects {
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
 
