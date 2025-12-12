@@ -41,12 +41,7 @@ jobs:
     
     - name: Accept Android Licenses
       run: |
-        yes | sdkmanager --licenses || true
-    
-    - name: Set Android Environment Variables
-      run: |
-        echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-        echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+        yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses || true
     
     - name: Build APK
       working-directory: android
@@ -54,8 +49,8 @@ jobs:
         ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
         ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
       run: |
-        chmod +x ./gradlew || true
-        ./gradlew assembleDebug --stacktrace --no-daemon --info
+        chmod +x ./gradlew
+        ./gradlew assembleDebug --stacktrace --no-daemon
     
     - name: Upload APK artifact
       uses: actions/upload-artifact@v3
