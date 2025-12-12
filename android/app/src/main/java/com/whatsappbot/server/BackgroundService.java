@@ -161,7 +161,8 @@ public class BackgroundService extends Service {
             pb.environment().put("NODE_ENV", "production");
             
             serverProcess = pb.start();
-            Log.d(TAG, "Server started successfully with PID: " + serverProcess.pid());
+            // Process.pid() requires API 26+, use toString() for compatibility
+            Log.d(TAG, "Server started successfully");
             
         } catch (Exception e) {
             Log.e(TAG, "Error starting server with Node.js", e);

@@ -95,7 +95,8 @@ public class NodeJsService {
                 }
             }).start();
 
-            Log.d(TAG, "Node.js started successfully with PID: " + nodeProcess.pid());
+            // Process.pid() requires API 26+, use toString() for compatibility
+            Log.d(TAG, "Node.js started successfully");
             return true;
 
         } catch (Exception e) {
