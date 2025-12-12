@@ -1,0 +1,23 @@
+{
+	"appId": "com.whatsappbot.server",
+	"appName": "واتساب بوت خادم",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https",
+		"cleartext": true
+	},
+	"android": {
+		"allowMixedContent": true
+	},
+	"plugins": {
+		"BackgroundTask": {
+			"enabled": true
+		},
+		"Network": {
+			"enabled": true
+		},
+		"App": {
+			"enabled": true
+		}
+	}
+}

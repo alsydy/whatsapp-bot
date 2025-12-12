@@ -1,0 +1,17 @@
+node_modules/
+.wwebjs_auth/
+.wwebjs_cache/
+.sessions/
+sessions.json
+*.log
+.env
+.DS_Store
+dist/
+# android/ - نحتاج android/ في GitHub للبناء
+ios/
+.capacitor/
+*.keystore
+*.jks
+
+# لكن استثني ملفات البناء
+!android/app/src/main/assets/

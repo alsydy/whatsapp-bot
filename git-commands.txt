@@ -1,0 +1,24 @@
+# أوامر Git لرفع المشروع
+
+# ⚠️ مهم: يجب تثبيت Git أولاً من: https://git-scm.com/downloads
+# ثم أعد تشغيل PowerShell/CMD
+
+# بعد تثبيت Git، شغّل هذه الأوامر بالترتيب (كل أمر في سطر منفصل):
+
+cd E:\whatsapp-bot
+
+git init
+
+git add .
+
+git commit -m "Initial commit - WhatsApp Bot with embedded Node.js"
+
+git remote add origin https://github.com/alsydy/whatsapp-bot.git
+
+git branch -M main
+
+git push -u origin main
+
+# ملاحظة: سيطلب منك تسجيل الدخول إلى GitHub
+# حجم الرفع: ~600 MB (قد يستغرق 10-15 دقيقة)
+

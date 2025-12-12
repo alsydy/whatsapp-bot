@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "com.whatsappbot.server"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.whatsappbot.server"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    // نسخ ملفات Node.js و server.js إلى assets
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets', '../../nodejs-assets']
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'lib/x86/libnode.so'
+        pickFirst 'lib/x86_64/libnode.so'
+        pickFirst 'lib/armeabi-v7a/libnode.so'
+        pickFirst 'lib/arm64-v8a/libnode.so'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':capacitor-android')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    
+    // nodejs-mobile
+    implementation 'io.github.janeasystems:nodejs-mobile:0.2.0'
+}
+

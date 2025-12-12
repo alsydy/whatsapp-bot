@@ -1,0 +1,90 @@
+.qr-display {
+  text-align: center;
+  padding: 20px;
+}
+
+.qr-display.loading,
+.qr-display.waiting,
+.qr-display.connected {
+  padding: 60px 20px;
+}
+
+.qr-instructions {
+  text-align: right;
+  margin-bottom: 30px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.qr-instructions h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.qr-instructions ol {
+  text-align: right;
+  margin-right: 20px;
+  line-height: 2;
+  color: #666;
+}
+
+.qr-instructions li {
+  margin-bottom: 8px;
+}
+
+.qr-instructions strong {
+  color: #667eea;
+}
+
+.qr-code-container {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 20px 0;
+}
+
+.qr-code-image {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #667eea;
+  border-radius: 10px;
+  display: block;
+}
+
+.qr-note {
+  color: #856404;
+  background: #fff3cd;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.waiting-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e0e0e0;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

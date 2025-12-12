@@ -1,0 +1,136 @@
+.session-list {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.session-card {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.session-card:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.session-card.selected {
+  border-color: #667eea;
+  background: #f0f4ff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.session-card.connected {
+  border-left: 4px solid #28a745;
+}
+
+.session-card.waiting_qr {
+  border-left: 4px solid #ffc107;
+}
+
+.session-card.disconnected {
+  border-left: 4px solid #dc3545;
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.session-info {
+  flex: 1;
+}
+
+.session-name {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.session-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.btn-icon.danger:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+.session-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #666;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.empty-state p {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .sessions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
